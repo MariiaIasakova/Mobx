@@ -1,44 +1,43 @@
-import React from 'react';
+import React from "react";
 import { inject, observer } from "mobx-react";
 
-import TodoRow from './TodoRow';
+import TodoRow from "./TodoRow";
 
 export const TodoList = ({ tasks, doneTask, deleteTask }) => {
+  const todoTasks = tasks.filter((x) => !x.done);
+  const doneTasks = tasks.filter((x) => x.done);
 
-    if (!tasks || !tasks.length)
-        return <div className="empty-list">To-do list is empty</div>;
+  const getTasksViews = (tasks) => {
+    return (
+      <>
+        {tasks.map((task) => (
+          <TodoRow
+            key={task.id}
+            task={task}
+            doneTask={doneTask}
+            deleteTask={deleteTask}
+          />
+        ))}
+      </>
+    );
+  };
 
-    const todoTasks = tasks.filter(x => !x.done);
-    const doneTasks = tasks.filter(x => x.done);
-
-    const getTasksViews = (tasks) => {
-        return <>
-            {tasks.map((task) => (
-                <TodoRow
-                    key={task.id}
-                    task={task}
-                    doneTask={doneTask}
-                    deleteTask={deleteTask}
-                />
-            ))}
-        </>
-    };
-
-    return (<div className="todo-container">
-        {todoTasks.length > 0 && <div className="todo-tasks-container">
-            <h3>To do</h3>
-            {getTasksViews(todoTasks)}
-        </div>}
-        {doneTasks.length > 0 && <div className="done-tasks-container">
-            <h3>Done</h3>
-            {getTasksViews(doneTasks)}
-        </div>}
+  return (
+    <div className="todo-container">
+      <div className="todo-tasks-container">
+        <h3>To do</h3>
+        {todoTasks.length > 0 ? getTasksViews(todoTasks) : "<none>"}
+      </div>
+      <div className="done-tasks-container">
+        <h3>Done</h3>
+        {doneTasks.length > 0 ? getTasksViews(doneTasks) : "<none>"}
+      </div>
     </div>
-    )
-}
+  );
+};
 
-export default inject(stores => ({
-    tasks: stores.tasksStore.tasks,
-    doneTask: stores.tasksStore.doneTask,
-    deleteTask: stores.tasksStore.deleteTask,
+export default inject((stores) => ({
+  tasks: stores.tasksStore.tasks,
+  doneTask: stores.tasksStore.doneTask,
+  deleteTask: stores.tasksStore.deleteTask
 }))(observer(TodoList));
