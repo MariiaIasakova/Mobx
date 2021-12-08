@@ -1,0 +1,22 @@
+.search-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-block > .search-input {
+  padding: 0.5em;
+  border-color: #d0cdcd;
+}
+
+.search-block > .search-input:focus-visible {
+  padding: 0.5em;
+  border-color: orange;
+}
+
+.search-block > .search-btn {
+  width: 4em;
+  margin-left: 1em;
+  background: orange;
+  border: none;
+  border-radius: 6px;
+}
