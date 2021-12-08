@@ -1,0 +1,16 @@
+.alerts-container {
+    margin-top: 10px;
+}
+
+.alert {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: crimson;
+    background-color: lightpink;
+}
+
+.alert > .ion-ios-trash-outline {
+    font-size: larger;
+    cursor: pointer;
+}

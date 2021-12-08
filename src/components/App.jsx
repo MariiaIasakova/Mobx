@@ -10,11 +10,11 @@ class App extends Component {
       <div className="App">
         <main id="todo" role="main">
           <div className="main-content top-space-md">
-            <Statistics />
             <div>
               <NewTask />
               <TodoList />
             </div>
+            <Statistics />
           </div>
         </main>
       </div>

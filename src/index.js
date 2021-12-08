@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./css/main.scss";
+import "./styles/main.scss";
 
 import App from "./components/App";
 import { createStores } from "./stores/createStores";
